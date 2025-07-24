@@ -20,8 +20,9 @@ const app = express();
 app.use(express.json());
 
 //? HANDLING CROSS ORIGIN
+
 app.use(cors({
-  origin: "https://mycal-704.netlify.app",
+  origin: "https://calendly-clone-main-a9ll.vercel.app/",
   mehtods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', "UserEmail", "collection", "Authorization", "Access-Control-Allow-Credentials", "Access-Control-Allow-Origin"],
   credentials: true
