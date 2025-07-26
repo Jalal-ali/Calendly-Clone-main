@@ -4,16 +4,16 @@ let EventBaseURL = `http://localhost:5001`
 //! IF USER NOT PRESENT ---> 
 let UserEmail = localStorage.getItem("useremail");
 
-if (!UserEmail) {
-    swal("Please Login First!", "You need to login before adding any events..", "info");
-    setTimeout(() => {
-        window.location.href = "loginSignup.html"
-    }, 2000);
-}
+// if (!UserEmail) {
+//     swal("Please Login First!", "You need to login before adding any events..", "info");
+//     setTimeout(() => {
+//         window.location.href = "loginSignup.html"
+//     }, 2000);
+// }
 //! ---------------------->
 
 
-FetchAllUserEvents(UserEmail);
+// FetchAllUserEvents(UserEmail);
 
 async function FetchAllUserEvents(UserEmail) {
     spinner.style.display = "flex"; //!Spinner

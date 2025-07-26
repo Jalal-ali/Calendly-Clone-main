@@ -67,7 +67,7 @@ input {
   justify-content: space-evenly;
 }
 #color {
-  background-color: #8247f5;
+  /* background-color: #8247f5; */
   padding: 15px 15px;
   margin: 14px 5px;
   border-radius: 50%;
@@ -337,7 +337,7 @@ select {
   }
 }
 .detail-bg{
-  background: #2a7dff1a;
+      background: #f3f3f324;
     box-shadow: 65px black;
-    box-shadow: 0 0 2px 1px #3e6fe95c;
+    box-shadow: 0 0 1px 1px #728dff33;
 }
