@@ -28,6 +28,6 @@ document.addEventListener("click", (e) => {
 let GoogleRedirects = document.getElementsByClassName("googleRedirect");
 for (let i = 0; i < GoogleRedirects.length; i++) {
   GoogleRedirects[i].addEventListener("click", () => {
-    window.location.href = "https://test-one-delta-84.vercel.app/google"
+    window.location.href = "http://localhost:5001/google"
   })
 }

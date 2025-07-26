@@ -1,5 +1,5 @@
 
-const EventBaseURL = "https://test-one-delta-84.vercel.app/"
+const EventBaseURL = "http://localhost:5001"
 
 const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),

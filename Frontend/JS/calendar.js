@@ -1,5 +1,5 @@
 
-let EventBaseURL = `https://test-one-delta-84.vercel.app`
+let EventBaseURL = `http://localhost:5001`
 
 //! IF USER NOT PRESENT ---> 
 let UserEmail = localStorage.getItem("useremail");

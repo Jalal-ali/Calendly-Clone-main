@@ -1,7 +1,7 @@
 
 
 
-const EventBaseURL = `https://test-one-delta-84.vercel.app/`;
+const EventBaseURL = `http://localhost:5001`;
 
 const usersUrl = `${EventBaseURL}/users`;
 const signinUrl = `${usersUrl}/register`;

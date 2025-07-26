@@ -1,100 +1,546 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyCal : Dashboard</title>
+    <!-- <link rel="icon" href="./Images/product/icon_mycal.png" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="CSS/Dashboard.css" />
+    <link rel="stylesheet" href="CSS/common.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MyCal : Dashboard</title>
-  <!-- <link rel="icon" href="./Images/product/icon_mycal.png" /> -->
-  <link rel="stylesheet" href="CSS/Dashboard.css" />
-  <link rel="stylesheet" href="CSS/common.css" />
-</head>
-
-<body>
-  <!--todo--------------------------------------------- <Header> ----------------------------------------------->
-  <header>
-    <div id="spinner">
       <img style="width: 70px" src="Images/spinner.gif" alt="" />
-    </div>
-    <div id="navbar" class="margins">
-      <div>
-        <a href="index.html"><img src="data:image/png;base64,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" alt="logo" /></a>
-      </div>
-      <div id="linav">
-        <ul>
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./Dashboard.html">Availability</a></li>
-          <!-- <li><a href="./Dashboard.html">Intregations</a></li> -->
-        </ul>
-      </div>
-       <div id="Logout">
-        <div class="namecircle">
-          <img style="width: 22px; filter: invert()" src="Images/logout.svg" alt="" />
+  <body>
+    <!--todo--------------------------------------------- <newwww Header> ----------------------------------------------->
+    <nav class="bg-white border-gray-200 py-2.5">
+      <div
+        class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto"
+      >
+        <a href="#" class="flex items-center">
+          <span
+            class="self-center text-xl font-semibold whitespace-nowrap "
+            >Company Logo</span
+          >
+        </a>
+        <div class="flex items-center lg:order-2">
+          <!-- btns dropdown  -->
+          <ul class="flex flex-col gap-2 max-w-[280px] mx-auto">
+            <li>
+              <details class="group">
+                <summary
+                  class="flex items-center justify-between gap-2 font-medium marker:content-none hover:cursor-pointer bg-gray-100 rounded-full p-2 blur-bg"
+                >
+                  <svg
+                    fill="white"
+                    class="w-4 h-4 text-[#1A73E8] transition-transform duration-300 group-open:rotate-45"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z"
+                    ></path>
+                  </svg>
+                </summary>
+
+                <article
+                  class="px-4 pb-4 lg:absolute lg:right-4 bg-gray-700 rounded-lg blur-menu top-12"
+                >
+                  <ul class="flex flex-col gap-4 pl-2 my-3">
+                    <li class="flex gap-2">
+                      <a
+                        class="px-6 py-2 min-w-[120px] text-center text-white bg-[#1A73E8] border border-[#1A73E8] rounded active:text-violet-500 hover:bg-transparent hover:text-[#1A73E8] focus:outline-none focus:ring"
+                        href="/download"
+                      >
+                        Create Event
+                      </a>
+                    </li>
+
+                    <li class="flex gap-2">
+                      <a
+                        class="px-6 py-2 min-w-[120px] text-center text-[#1A73E8] border border-[#1A73E8] rounded hover:bg-[#1A73E8] hover:text-white active:bg-indigo-500 focus:outline-none focus:ring"
+                        href="/download"
+                      >
+                        My Calender
+                      </a>
+                    </li>
+                  </ul>
+                </article>
+              </details>
+            </li>
+            <!-- 
+    <li>
+        <details class="group">
+
+            <summary
+                class="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
+
+                <span class="flex gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+
+                    <span>
+                        Recent Documents
+                    </span>
+                </span>
+                <svg class="w-5 h-5 text-gray-500 transition group-open:rotate-90" xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                    </path>
+                </svg>
+            </summary>
+
+            <article class="px-4 pb-4">
+                <ul class="flex flex-col gap-1 pl-2">
+                    <li><a href="">Document title</a></li>
+                    <li><a href="">Document title</a></li>
+                    <li><a href="">Document title</a></li>
+                </ul>
+            </article>
+
+        </details>
+    </li>
+
+    <li>
+        <details class="group">
+
+            <summary
+                class="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
+
+                <span class="flex gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                    </svg>
+                    <span>
+                        Popular courses
+                    </span>
+                </span>
+                <svg class="w-5 h-5 text-gray-500 transition group-open:rotate-90" xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                    </path>
+                </svg>
+
+
+            </summary>
+
+            <article class="px-4 pb-4">
+                <ul class="flex flex-col gap-1 pl-2">
+                    <li><a href="">Course title</a></li>
+                    <li><a href="">Course title</a></li>
+                    <li><a href="">Course title</a></li>
+                </ul>
+            </article>
+
+        </details>
+    </li> -->
+          </ul>
+          <!-- new drop down  -->
+          <ul class="flex flex-col gap-2 max-w-[280px] mx-auto">
+            <li>
+              <details class="group">
+                <summary
+                  class="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer"
+                >
+                  <span class="flex gap-2">
+                    <img
+                      class="w-9 h-9 rounded-full border-"
+                      src="https://lh3.googleusercontent.com/a/AGNmyxbSlMgTRzE3_SMIxpDAhpNad-_CN5_tmph1NQ1KhA=s96-c"
+                      alt=""
+                    />
+
+                    <!-- <span> Prajwal Hallale </span> -->
+                  </span>
+                  <!-- <svg
+                    class="w-5 h-5 text-gray-500 transition group-open:rotate-90"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="#000b1a8a"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    ></path>
+                  </svg> -->
+                </summary>
+
+                <article
+                  class="px-4 pb-4 absolute bg-gray-700 rounded-lg blur-menu right-4"
+                >
+                  <ul class="flex flex-col gap-4 pl-2 mt-4">
+                    <li class="flex gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                        ></path>
+                      </svg>
+
+                      <a href="http://127.0.0.1:8000/user/dashboard">
+                        Dashboard
+                      </a>
+                    </li>
+
+                    <!-- <li class="flex gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z">
+                            </path>
+                        </svg>
+
+                        <a href="http://127.0.0.1:8000/user/study-lists">
+                            Study Lists
+                        </a>
+                    </li>
+
+
+                    <li class="flex gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12l-3-3m0 0l-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z">
+                            </path>
+                        </svg>
+
+
+                        <a href="http://127.0.0.1:8000/user/contribution">
+                            Your contribution
+                        </a>
+                    </li> -->
+
+                    <li class="flex gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z"
+                        ></path>
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        ></path>
+                      </svg>
+
+                      <a href="http://127.0.0.1:8000/user/settings">
+                        Settings
+                      </a>
+                    </li>
+                    <li class="flex gap-2">
+                      <img
+                        style="width: 22px; filter: invert()"
+                        src="Images/logout.svg"
+                        alt=""
+                      />
+
+                      <a
+                        class="text-red-500"
+                        href="http://127.0.0.1:8000/user/settings"
+                      >
+                        LogOut
+                      </a>
+                    </li>
+
+                    <!-- <form action="http://127.0.0.1:8000/auth/logout" method="POST">
+                        <input type="hidden" name="_token" value="ymEkCLBFpgkdaSbidUArRsdHbER5DkT6ByS3eJYb">
+                        
+                        <div class="flex">
+                          
+                          <img style="width: 22px; filter: invert()" src="Images/logout.svg" alt="" />
+                          <button type="submit" class="text-red-500 text-sm px-2 py-1 hover:bg-red-200 rounded-md">
+                            Log Out
+                          </button>
+                        </div>
+                    </form> -->
+                  </ul>
+                </article>
+              </details>
+            </li>
+            <!-- 
+    <li>
+        <details class="group">
+
+            <summary
+                class="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
+
+                <span class="flex gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+
+                    <span>
+                        Recent Documents
+                    </span>
+                </span>
+                <svg class="w-5 h-5 text-gray-500 transition group-open:rotate-90" xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                    </path>
+                </svg>
+            </summary>
+
+            <article class="px-4 pb-4">
+                <ul class="flex flex-col gap-1 pl-2">
+                    <li><a href="">Document title</a></li>
+                    <li><a href="">Document title</a></li>
+                    <li><a href="">Document title</a></li>
+                </ul>
+            </article>
+
+        </details>
+    </li>
+
+    <li>
+        <details class="group">
+
+            <summary
+                class="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
+
+                <span class="flex gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                    </svg>
+                    <span>
+                        Popular courses
+                    </span>
+                </span>
+                <svg class="w-5 h-5 text-gray-500 transition group-open:rotate-90" xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                    </path>
+                </svg>
+
+
+            </summary>
+
+            <article class="px-4 pb-4">
+                <ul class="flex flex-col gap-1 pl-2">
+                    <li><a href="">Course title</a></li>
+                    <li><a href="">Course title</a></li>
+                    <li><a href="">Course title</a></li>
+                </ul>
+            </article>
+
+        </details>
+    </li> -->
+          </ul>
+
+          <!-- old btn  -->
+          <!-- <div class="hidden mt-2 mr-4 sm:inline-block">
+                <span></span>
+            </div>
+
+            <a href="https://themesberg.com/product/tailwind-css/landing-page"
+                class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Download</a>
+            <button data-collapse-toggle="mobile-menu-2" type="button"
+				class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+				aria-controls="mobile-menu-2" aria-expanded="true">
+				<span class="sr-only">Open main menu</span>
+				<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd"
+						d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+						clip-rule="evenodd"></path>
+				</svg>
+				<svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd"
+						d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+						clip-rule="evenodd"></path>
+				</svg>
+			</button> -->
         </div>
-        <a href="Dashboard.html" id="UserShow3">Account</a>
+        <div
+        class="items-center justify-between lg:flex lg:w-auto lg:order-1 blur-menu-main
+       absolute lg:static top-16 right-3 w-1/2 z-50 bg-white p-4 
+       lg:bg-transparent lg:p-0 lg:rounded-full rounded-xl hidden"
+          
+          id="mobile-menu-2"
+        >
+          <ul
+            class="appBarUi flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
+          >
+            <li>
+              <a
+                href="Dashboard.html"
+                class="active block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-[#F4F7FE] lg:p-0 dark:text-white"
+                aria-current="page"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="CreateEvent.html"
+                class="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-[#F4F7FE] lg:p-0 dark:text-white"
+                aria-current="page"
+                >Scheduling</a
+              >
+            </li>
+            <li>
+              <a
+                href="calendar.html"
+                class="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-[#F4F7FE] lg:p-0 dark:text-white"
+                aria-current="page"
+                >Meeting</a
+              >
+            </li>
+            <li>
+              <a
+                href="Dashboard.html"
+                class="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-[#F4F7FE] lg:p-0 dark:text-white"
+                aria-current="page"
+                >Availability</a
+              >
+            </li>
+            <!-- <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-[#F4F7FE] lg:p-0 dark:text-white"
+                aria-current="page"
+                >Contact</a
+              >
+            </li> -->
+
+            <li>
+              <a
+                href="./NotifyBeforePage.html"
+                class="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-[#F4F7FE] lg:p-0 dark:text-white"
+                aria-current="page"
+                >Workflows</a
+              >
+            </li>
+
+            <!-- <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 lg:text-[#F4F7FE] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
+                >Marketplace</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 lg:text-[#F4F7FE] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
+                >Features</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 lg:text-[#F4F7FE] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
+                >Team</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 lg:text-[#F4F7FE] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
+                >Contact</a
+              >
+            </li> -->
+          </ul>
+        </div>
       </div>
-    </div>
+    </nav>
+    <!--todo--------------------------------------------- <Header> ----------------------------------------------->
 
-    <hr style="border: 1px solid rgba(128, 128, 128, 0.158)" />
+    <!--todo-------------------------------------------------------------------------------------------->
+    <div id="spaceNav"></div>
+    <div id="topBody" class="margins">
+      <div>
+        <div><img id="Avatarimg" src="Images/avatar2.png" alt="" /></div>
+        <div>
+          <p id="UserShow">Mohima Bahadur</p>
+          <a href="#"><span id="UserShow2">mohimabahadur</span></a>
+        </div>
+      </div>
 
-    <div id="sticky">
-      <div id="topnav">
-        <p>My Calendly</p>
-     <div  class="createandcal">
-      <a href="CreateEvent.html">
-        <p id="Create">+ Create Event</p>
+      <div>
+        <div >
+           <a
+           style="font-weight: 400"
+            href="CreateEvent.html"
+           class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-[#0056b3] transition">
+        + New Event Type
       </a>
-      <a href="calendar.html">
-        <p id="Create">My Calendar</p>
-      </a>
-     </div>
-      </div>
-      <div id="botnav">
-        <ul>
-          <li><a href="Dashboard.html">Event Types</a></li>
-          <li><a href="Dashboard.html">Schedule Event </a></li>
-          <li><a href="NotifyBeforePage.html">Workflows</a></li>
-          <li><a href="calendar.html">Calendar</a></li>
-        </ul>
+        </div>
+        <!-- <div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/126/126472.png"
+            alt=""
+          />
+        </div> -->
       </div>
     </div>
 
-  </header>
+    <hr class="margins" />
+    <!-- dotted bg  -->
+    <div class="-z-10 absolute top-15 w-full h-screen bg-contain bg-no-repeat bg-contain" style="background-image: url('./Images/bg-blue-dots (1).png');">
+  <div class="-z-10 absolute top-3 mt-3 md:rounded-t-[80px] rounded-4xl inset-0 bg-gradient-to-b h-screen from-[#007BFF]/60 via-[#007BFF]/40 to-white mix-blend-color"></div>
+</div>
+<!-- left and right section  -->
+<div class="max-w-6xl mx-auto px-4 py-8 margins">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    
+    <!-- Left content Section -->
+    <div class="space-y-4">
+      <h2 class="text-2xl font-bold text-gray-800">You don't have any event types yet.</h2>
+      <p class="text-gray-600">
+        You'll want to add an event type to allow people to schedule with you.
+      </p>
+     
+    </div>
 
-  <!--todo-------------------------------------------------------------------------------------------->
-  <div id="spaceNav"></div>
-  <div id="topBody" class="margins">
+    <!-- Right img Section -->
     <div>
-      <div><img id="Avatarimg" src="Images/avatar2.png" alt=""></div>
-      <div>
-        <p id="UserShow">Mohima Bahadur</p>
-        <a href="#">MyCal.com/<span id="UserShow2">mohimabahadur</span></a>
-      </div>
+      <img src="Images/Layer 5.png" alt="Right Side" class="w-full h-auto rounded-lg" />
     </div>
 
-    <div>
-      <div>
-       <p><a style="color: rgb(0, 119, 255);font-weight: 400;" href="CreateEvent.html"> + New Event Type</a></p>
-      </div>
-      <div>
-        <img src="https://cdn-icons-png.flaticon.com/512/126/126472.png" alt="" />
-      </div>
-    </div>
   </div>
+</div>
 
-  <hr class="margins" />
 
-  <div id="content" class="margins">
-    <h2>You don't have any event types yet.</h2>
-    <p>
-      You'll want to add an event type to allow people to schedule with you.
-    </p>
-    <div>
-    </div>
-  </div>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="JS/Dashboard.js"></script>
-</body>
-</note>
+    <!-- <div id="content" class="margins">
+      <img class="bgImageDashboard" src="./Images/bg-blue-dots (1).png"/>
+      <h2>You don't have any event types yet.</h2>
+      <p>
+        You'll want to add an event type to allow people to schedule with you.
+      </p>
+      <div></div>
+    </div> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="JS/Dashboard.js"></script>
+  </body>
+  <!-- </note> -->
 </html>

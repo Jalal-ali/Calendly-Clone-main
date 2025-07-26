@@ -1,4 +1,4 @@
-let EventBaseURL = `https://test-one-delta-84.vercel.app/`
+let EventBaseURL = `http://localhost:5001`
 
 
 var navbar = document.getElementById("sticky");
