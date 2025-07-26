@@ -35,7 +35,7 @@ a {
 }
 #Avatarimg {
   margin: 15px;
-  width: 90px;
+  width: 8rem;
   border-radius: 50%;
 }
 .margins {
@@ -410,11 +410,11 @@ a {
     padding: 7px 13px;
     font-size: 12px !important;
   }
-  #Avatarimg {
+  /* #Avatarimg {
     width: 95px;
     margin: 0px;
     margin-right: 10px;
-  }
+  } */
   #topBody > div:nth-child(1) > div > p,
   #topBody > div:nth-child(1) > div > a,
   #UserShow2 {
